@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draggable Boxes</title>
+<style>
+    .column:nth-child(1) {
+        background-color: transparent;
+    }
+
+    .column:nth-child(2) {
+        background-color: transparent ;
+    }
+
+    .column:nth-child(3) {
+        background-color: transparent  ;
+    }
+
+    .column {
+        float: left;
+        width: 200px;
+        height: 400px;
+        border: 1px solid rgb(255, 0, 200);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .box {
+        margin: 10px;
+        cursor: pointer;
+        text-align:center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        
+    }
+
+    #box1 {
+        width: 70px;
+        height: 50px;
+        background-color: lightblue;
+    }
+
+    #box2 {
+        width: 120px;
+        height: 50px;
+        background-color: lightgreen;
+    }
+
+    #box3 {
+        width: 170px;
+        height: 50px;
+        background-color: lightcoral;
+    }
+    
+</style>
+</head>
+<body>
+    <div class="header">
+        <h1>Math project</h1>
+        <p class="paragraph">
+            This is a simple math project where you can drag and drop boxes to the correct columns.
+            The boxes are randomly generated and can be dragged and dropped anywhere on the screen.
+            When you're done, click the "Start Animation" button to see the boxes move to their correct columns.
+            Click the "Reset" button to reset all the boxes and columns.
+        </p>
+    </div>
+        <button onclick="startAnimation()">Start Animation</button>
+            <button onclick="resetBoxes()">Reset</button>
+    <div class="container">
+        <div class="column-container">
+            <div class="column" id="column1">
+                <div class="box" id="box1" style="top: 10px;">Box Number 1</div>
+                <div class="box" id="box2" style="top: 70px;">Box Number 2</div>
+                <div class="box" id="box3" style="top: 130px;">Box Number 3</div>
+            </div>
+        </div>
+    
+        <div class="column-container">
+            <div class="column" id="column2"></div>
+        </div>
+    
+        <div class="column-container">
+            <div class="column" id="column3"></div>
+        </div>
+    </div>
+      <div>
+        <h1>This is the math solution </h1>
+        <p>
+            let n = number of box 
+            <br> and then let look at the box Animation above as the number increast ,the number of box moment also increast by moutiply number of box with 2 and minus 1<br> 
+            <br> so we can have the number of box moment = ( n x 2 ) - 1
+            <br> and then number of box moment = ( 3 x 2 ) - 1
+            <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= 5
+        </p>
+        <div class="container">
+        <h1>and this is the calcuation example if the number of box increast : Calculate </h1>
+        <input type="number" id="inputNumber" placeholder="Enter box number" />
+        <button onclick="calculate()">Calculate</button>
+        <div class="result" id="result">Result will be shown here</div>
+    </div>
+      </div>
+    <script>
+        function startAnimation() {
+            const delay = 1000;
+
+            // Move box 1 to column 2
+            setTimeout(() => moveBox('box1', 'column2', 10), 0);
+
+            // Move box 2 to column 3
+            setTimeout(() => moveBox('box2', 'column3', 10), delay);
+
+            // Move box 3 to column 3 under box 2
+            setTimeout(() => moveBox('box3', 'column3', 70), 2 * delay);
+
+            // Move box 2 back to column 2
+            setTimeout(() => moveBox('box2', 'column2', 60), 3 * delay);
+
+            // Move box 3 to column 2 under box 2
+            setTimeout(() => moveBox('box3', 'column2', 120), 4 * delay);
+        }
+    
+        function moveBox(boxId, columnId, newTop) {
+            const box = document.getElementById(boxId);
+            const column = document.getElementById(columnId);
+            column.appendChild(box);
+            box.style.top = `${newTop}px`;
+        }
+
+        function resetBoxes() {
+            moveBox('box1', 'column1', 10);
+            moveBox('box2', 'column1', 70);
+            moveBox('box3', 'column1', 130);
+        }
+         function calculate() {
+            const input = document.getElementById('inputNumber').value;
+            const number = parseFloat(input);
+            if (isNaN(number)) {
+                alert('Please enter a valid number');
+                return;
+            }
+            const result = (number * 2) - 1;
+            document.getElementById('result').innerText = `Result: ${result}`;
+        }
+    </script>
+</body>
+</html>
