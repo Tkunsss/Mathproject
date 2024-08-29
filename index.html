@@ -109,20 +109,26 @@
         function startAnimation() {
             const delay = 1000;
 
-            // Move box 1 to column 2
-            setTimeout(() => moveBox('box1', 'column2', 10), 0);
+            // Move box 1 to column 3
+            setTimeout(() => moveBox('box1', 'column3', 10), 0);
 
-            // Move box 2 to column 3
-            setTimeout(() => moveBox('box2', 'column3', 10), delay);
+            // Move box 2 to column 2
+            setTimeout(() => moveBox('box2', 'column2', 70), delay);
 
-            // Move box 3 to column 3 under box 2
-            setTimeout(() => moveBox('box3', 'column3', 70), 2 * delay);
+            // Move box 1 to column 2 on box 2 
+            setTimeout(() => moveBox('box1', 'column2', 70), 2 * delay);
 
-            // Move box 2 back to column 2
-            setTimeout(() => moveBox('box2', 'column2', 60), 3 * delay);
+            // Move box 3 to column 3
+            setTimeout(() => moveBox('box3', 'column3', 130), 3 * delay);
 
-            // Move box 3 to column 2 under box 2
-            setTimeout(() => moveBox('box3', 'column2', 120), 4 * delay);
+            // Move box 1 to column 1 under box 2
+            setTimeout(() => moveBox('box1', 'column1', 10), 4 * delay);
+
+            // move box 2 to column 3 on box 3
+            setTimeout(() => moveBox('box2', 'column3', 130),5 * delay);
+
+            // move box 1 to column 3 on box 2
+            setTimeout(() => moveBox('box1', 'column3', 130),6 * delay);
         }
     
         function moveBox(boxId, columnId, newTop) {
