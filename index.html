@@ -73,86 +73,76 @@
         <button onclick="startAnimation()">Start Animation</button>
             <button onclick="resetBoxes()">Reset</button>
     <div class="container">
-        <div class="column-container">
-            <div class="column" id="column1">
-                <div class="box" id="box1" style="top: 130px;">Box Number 1</div>
-                <div class="box" id="box2" style="top: 70px;">Box Number 2</div>
-                <div class="box" id="box3" style="top: 10px;">Box Number 3</div>
-            </div>
-        </div>
-    
-        <div class="column-container">
-            <div class="column" id="column2"></div>
-        </div>
-    
-        <div class="column-container">
-            <div class="column" id="column3"></div>
+    <div class="column-container">
+        <div class="column" id="column1">
+            <div class="box" id="box1" style="top: 190px;">Box Number 1</div>
+            <div class="box" id="box2" style="top: 130px;">Box Number 2</div>
+            <div class="box" id="box3" style="top: 70px;">Box Number 3</div>
         </div>
     </div>
-      <div>
-        <h1>This is the math solution </h1>
-        <p>
-            let n = number of box 
-            <br> and then let look at the box Animation above as the number increast ,the number of box moment also increast by moutiply number of box with 2 and plus 1<br> 
-            <br> so we can have the number of box moment = ( n x 2 ) + 1
-            <br> and then number of box moment = ( 3 x 2 ) + 1
-            <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= 7
-        </p>
-          <div class="container">
-        <h1>and this is the calcuation example if the number of box increast : Calculate </h1>
+
+    <div class="column-container">
+        <div class="column" id="column2"></div>
+    </div>
+
+    <div class="column-container">
+        <div class="column" id="column3"></div>
+    </div>
+</div>
+
+<div>
+    <h1>This is the math solution</h1>
+    <p>
+        let n = number of box 
+        <br> and then let look at the box Animation above as the number increases, the number of box movements also increases by multiplying the number of boxes by 2 and adding 1.<br> 
+        <br> so we can have the number of box movements = (n x 2) + 1
+        <br> and then number of box movements = (3 x 2) + 1
+        <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= 7
+    </p>
+
+    <div class="container">
+        <h1>and this is the calculation example if the number of boxes increases: Calculate</h1>
         <input type="number" id="inputNumber" placeholder="Enter box number" />
         <button onclick="calculate()">Calculate</button>
         <div class="result" id="result">Result will be shown here</div>
     </div>
-      </div>
-    <script>
-        function startAnimation() {
-            const delay = 1000;
+</div>
 
-            // Move box 1 to column 3
-            setTimeout(() => moveBox('box1', 'column3', 10), 0);
+<script>
+    function startAnimation() {
+        const delay = 1000;
 
-            // Move box 2 to column 2
-            setTimeout(() => moveBox('box2', 'column2', 70), delay);
+        // Move box 3 to column 1
+        setTimeout(() => moveBox('box3', 'column1', 70), 0);
 
-            // Move box 1 to column 2 on box 2 
-            setTimeout(() => moveBox('box1', 'column2', 70), 2 * delay);
+        // Move box 2 to column 1 under box 3
+        setTimeout(() => moveBox('box2', 'column1', 130), delay);
 
-            // Move box 3 to column 3
-            setTimeout(() => moveBox('box3', 'column3', 130), 3 * delay);
+        // Move box 1 to column 1 under box 2
+        setTimeout(() => moveBox('box1', 'column1', 190), 2 * delay);
+    }
 
-            // Move box 1 to column 1 under box 2
-            setTimeout(() => moveBox('box1', 'column1', 10), 4 * delay);
+    function moveBox(boxId, columnId, newTop) {
+        const box = document.getElementById(boxId);
+        const column = document.getElementById(columnId);
+        column.appendChild(box);
+        box.style.top = `${newTop}px`;
+    }
 
-            // move box 2 to column 3 on box 3
-            setTimeout(() => moveBox('box2', 'column3', 130),5 * delay);
+    function resetBoxes() {
+        moveBox('box1', 'column1', 190);
+        moveBox('box2', 'column1', 130);
+        moveBox('box3', 'column1', 70);
+    }
 
-            // move box 1 to column 3 on box 2
-            setTimeout(() => moveBox('box1', 'column3', 130),6 * delay);
+    function calculate() {
+        const input = document.getElementById('inputNumber').value;
+        const number = parseFloat(input);
+        if (isNaN(number)) {
+            alert('Please enter a valid number');
+            return;
         }
-    
-        function moveBox(boxId, columnId, newTop) {
-            const box = document.getElementById(boxId);
-            const column = document.getElementById(columnId);
-            column.appendChild(box);
-            box.style.top = `${newTop}px`;
-        }
-
-        function resetBoxes() {
-            moveBox('box1', 'column1', 130);
-            moveBox('box2', 'column1', 70);
-            moveBox('box3', 'column1', 10);
-        }
-         function calculate() {
-            const input = document.getElementById('inputNumber').value;
-            const number = parseFloat(input);
-            if (isNaN(number)) {
-                alert('Please enter a valid number');
-                return;
-            }
-            const result = (number * 2) - 1;
-            document.getElementById('result').innerText = `Result: ${result}`;
-        }
-    </script>
-</body>
-</html>
+        const result = (number * 2) - 1;
+        document.getElementById('result').innerText = `Result: ${result}`;
+    }
+</script>
